@@ -35,13 +35,14 @@ pipeline {
                 }
             }
         }
-        stage('Deploy') {
+         stage('Deploy') {
             steps {
-                script {
-                    def dockerCmd = 'sudo docker run -itd --name My-first-container -p 8900:80 akshu20791/businesswebsite:latest'
+               script {
+                    def dockerCmd = 'sudo docker run -itd --name My-first-containe211 -p 8090:80 akshu20791/businesswebsite:latest'
                     sshagent(['sshkeypair']) {
-                        sh "touch file1"
-                        sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.83.223 ${dockerCmd}"
+                        //chnage the private ip in below code
+                        // sh "docker run -itd --name My-first-containe211 -p 8082:80 akshu20791/phpproject:v1"
+                         sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.83.223 ${dockerCmd}"
                     }
                 }
             }
