@@ -40,6 +40,7 @@ pipeline {
                 script {
                     def dockerCmd = 'sudo docker run -itd --name My-first-container -p 8900:80 akshu20791/businesswebsite:latest'
                     sshagent(['sshkeypair']) {
+                        sh "touch file1"
                         sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.83.223 ${dockerCmd}"
                     }
                 }
